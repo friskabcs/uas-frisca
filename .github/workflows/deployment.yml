@@ -10,22 +10,21 @@ jobs:
     runs-on: self-hosted
 
     steps:
-      # 1. Mengambil source code terbaru
       - name: Checkout Source
         uses: actions/checkout@v4
 
-      # 2. Build image terbaru
       - name: Build Image
+        shell: cmd
         run: docker compose build --no-cache
 
-      # 3. Menghentikan container lama
       - name: Stop Container
-        run: docker compose down || true
+        shell: cmd
+        run: docker compose down
 
-      # 4. Menjalankan container baru
       - name: Start Container
+        shell: cmd
         run: docker compose up -d
 
-      # 5. Menghapus image yang tidak digunakan
       - name: Remove Unused Images
+        shell: cmd
         run: docker image prune -f
