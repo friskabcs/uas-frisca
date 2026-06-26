@@ -26,7 +26,7 @@ jobs:
         run: docker compose build --no-cache
 
       - name: Stop Container
-        continue-on-error: true
+        continue-on-error: 
         run: docker compose down
 
       - name: Start Container
