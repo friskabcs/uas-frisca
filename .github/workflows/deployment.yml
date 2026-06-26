@@ -14,8 +14,13 @@ jobs:
         shell: cmd
 
     steps:
-      - name: Checkout Source
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+
+      - name: Check Docker
+        run: |
+          docker version
+          docker context ls
+          docker ps
 
       - name: Build Image
         run: docker compose build --no-cache
